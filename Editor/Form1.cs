@@ -319,9 +319,10 @@ namespace Editor
 
         public void OnButtonMouseUp(BaseButton button)
         {
-            button.BoxX.Text = (button.Location.X + 4).ToString();
-            button.BoxY.Text = (button.Location.Y + 4).ToString();
             button.Location = button.LocPoint;
+            button.BoxX.Text = (button.LocPoint.X + 4).ToString();
+            button.BoxY.Text = (button.LocPoint.Y + 4).ToString();
+            
             _canvas.ClearField(_pictureBox);
             _tooltip.RemoveAll();
             DrawFigures();
