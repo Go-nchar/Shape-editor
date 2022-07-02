@@ -20,20 +20,22 @@ namespace Editor
         private ToolTip _tooltip = new ToolTip();
         private Canvas _canvas = new Canvas();
 
-        public int BoxWidth { get; private set; } = 500;
-        public int BoxHeight { get; private set; } = 500;
-
         public Form1()
         {
             InitializeComponent();
 
-            Canvas.SetSize(_pictureBox, BoxWidth, BoxHeight);
+            Canvas.SetSize(_pictureBox);
             _clearButton.Click += (s, e) => ClearButtonClick();
 
             _openFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             _saveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
 
             DrawFigures();
+        }
+
+        public Size GetSize()
+        {
+            return _pictureBox.Size;
         }
 
         private void OnLoadFigures(object sender, EventArgs e)
@@ -109,8 +111,8 @@ namespace Editor
 
             for (int i = 0; i < 3; ++i)
             {
-                points[i].X = _random.Next(0, BoxWidth);
-                points[i].Y = _random.Next(0, BoxHeight);
+                points[i].X = _random.Next(0, _pictureBox.Size.Width);
+                points[i].Y = _random.Next(0, _pictureBox.Size.Height);
             }
             List<TextBox> textBoxList = new List<TextBox>();
             Figure figure = _figuresData.Figures.FindAll(f => f is Triangle).LastOrDefault();
@@ -133,8 +135,8 @@ namespace Editor
 
             for (int i = 0; i < 2; ++i)
             {
-                points[i].X = _random.Next(0, BoxWidth);
-                points[i].Y = _random.Next(0, BoxHeight);
+                points[i].X = _random.Next(0, _pictureBox.Size.Width);
+                points[i].Y = _random.Next(0, _pictureBox.Size.Height);
             }
             List<TextBox> textBoxList = new List<TextBox>();
             Figure figure = _figuresData.Figures.FindAll(f => f is Circle).LastOrDefault();
@@ -186,8 +188,8 @@ namespace Editor
 
             for (int i = 0; i < 2; ++i)
             {
-                points[i].X = _random.Next(0, BoxWidth);
-                points[i].Y = _random.Next(0, BoxHeight);
+                points[i].X = _random.Next(0, _pictureBox.Size.Width);
+                points[i].Y = _random.Next(0, _pictureBox.Size.Height);
             }
 
             List<TextBox> textBoxList = new List<TextBox>();
@@ -211,8 +213,8 @@ namespace Editor
 
             for (int index = 0; index < 2; ++index)
             {
-                source[index].X = _random.Next(0, BoxWidth);
-                source[index].Y = _random.Next(0, BoxHeight);
+                source[index].X = _random.Next(0, _pictureBox.Size.Width);
+                source[index].Y = _random.Next(0, _pictureBox.Size.Height);
             }
 
             List<TextBox> textBoxList = new List<TextBox>();
@@ -227,21 +229,6 @@ namespace Editor
 
             rect.Draw(_canvas.Field(_pictureBox), _pictureBox);
             UpdateCount(rect);
-        }
-
-        private void CanvasButtonClick(object sender, EventArgs e)
-        {
-            if (BoxWidth <= 1400 && BoxHeight <= 900 && BoxWidth >= 500 && BoxHeight >= 500)
-            {
-                Canvas.SetSize(_pictureBox, BoxWidth, BoxHeight);
-            }
-            else
-            {
-               MessageBox.Show("Possible size from 500:500 to 1400:900!", "Caution!", 
-                   MessageBoxButtons.OK, MessageBoxIcon.Asterisk, 
-                   MessageBoxDefaultButton.Button1, 
-                   MessageBoxOptions.DefaultDesktopOnly);
-            }
         }
 
         private void ClearButtonClick()
@@ -269,34 +256,6 @@ namespace Editor
             _rectCount = 0;
 
             _figuresData.Figures.Clear();
-        }
-
-        private void WidthTextBoxTextChanged(object sender, EventArgs e)
-        {
-            if (_widthTextBox.Text.Length == 0)
-                _widthTextBox.Text = "";
-            else
-                BoxWidth = int.Parse(_widthTextBox.Text);
-        }
-
-        private void HeightTextBoxTextChanged(object sender, EventArgs e)
-        {
-            if (_heightTextBox.Text.Length == 0)
-                _heightTextBox.Text = "";
-            else
-                BoxHeight = int.Parse(_heightTextBox.Text);
-        }
-
-        private void CanvasTextBoxKeyPress(object sender, KeyPressEventArgs e)
-        {
-            char keyChar = e.KeyChar;
-            _widthTextBox.MaxLength = 4;
-            _heightTextBox.MaxLength = 4;
-
-            if (char.IsDigit(keyChar) || keyChar == '\b')
-                return;
-
-            e.Handled = true;
         }
 
         private void TextBoxKeyPress(object sender, KeyPressEventArgs e, TextBox box)
@@ -333,26 +292,26 @@ namespace Editor
             int x = 0;
             if (button.BoxX != null && button.BoxX.Text.Length != 0)
             {
-                if (int.Parse(button.BoxX.Text) < BoxWidth)
+                if (int.Parse(button.BoxX.Text) < _pictureBox.Size.Width)
                 {
                     x = int.Parse(button.BoxX.Text);
                 }
                 else
                 {
-                    x = int.Parse(button.BoxX.Text = BoxWidth.ToString());
+                    x = int.Parse(button.BoxX.Text = _pictureBox.Size.Width.ToString());
                 }
             }
 
             int y = 0;
             if (button.BoxY != null && button.BoxY.Text.Length != 0)
             {
-                if (int.Parse(button.BoxY.Text) < BoxHeight)
+                if (int.Parse(button.BoxY.Text) < _pictureBox.Size.Height)
                 {
                     y = int.Parse(button.BoxY.Text);
                 }
                 else
                 {
-                    y = int.Parse(button.BoxY.Text = BoxHeight.ToString());
+                    y = int.Parse(button.BoxY.Text = _pictureBox.Size.Height.ToString());
                 }
             }
 

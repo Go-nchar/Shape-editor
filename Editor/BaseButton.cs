@@ -32,7 +32,7 @@ namespace Editor
 
             Point point = new Point(mevent.Location.X - DownPoint.X, mevent.Location.Y - DownPoint.Y);
             
-            if (Program.MainForm.BoxWidth > Location.X + point.X && Program.MainForm.BoxHeight > Location.Y + point.Y)
+            if (Program.MainForm.GetSize().Width > Location.X + point.X && Program.MainForm.GetSize().Height > Location.Y + point.Y)
             {
                 if (Location.X + point.X > 0 && Location.Y + point.Y > 0)
                 {

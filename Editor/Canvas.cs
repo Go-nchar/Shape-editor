@@ -5,9 +5,8 @@ namespace Editor
 {
     public class Canvas
     {
-        public static void SetSize(PictureBox pictureBox, int width, int height)
+        public static void SetSize(PictureBox pictureBox)
         {
-            pictureBox.Size = new Size(pictureBox.Width = width, pictureBox.Height = height);
             pictureBox.BackColor = Color.Turquoise;
         }
 

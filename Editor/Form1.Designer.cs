@@ -14,9 +14,6 @@ namespace Editor
 
         private Button _triangleButton;
         private PictureBox _pictureBox;
-        private TextBox _widthTextBox;
-        private TextBox _heightTextBox;
-        private Button _sizeButton;
         private Button _clearButton;
         private Panel _panel;
         private Button _circleButton;
@@ -37,9 +34,6 @@ namespace Editor
         {
             _triangleButton = new Button();
             _pictureBox = new PictureBox();
-            _widthTextBox = new TextBox();
-            _heightTextBox = new TextBox();
-            _sizeButton = new Button();
             _clearButton = new Button();
             _panel = new Panel();
             _rectCountBox = new TextBox();
@@ -61,42 +55,10 @@ namespace Editor
 
             _pictureBox.Location = new Point(100, 60);
             _pictureBox.Name = "pictureBox1";
-            _pictureBox.Size = new Size(500, 500);
+            _pictureBox.Size = new Size(660, 725);
             _pictureBox.TabIndex = 1;
             _pictureBox.TabStop = false;
-
-            _widthTextBox.Location = new Point(40, 12);
-            _widthTextBox.Multiline = true;
-            _widthTextBox.Name = "WidthTextBox";
-            _widthTextBox.Size = new Size(50, 30);
-            _widthTextBox.TabIndex = 2;
-            _widthTextBox.Text = "500";
-            _widthTextBox.TextChanged += new EventHandler(WidthTextBoxTextChanged);
-            _widthTextBox.KeyPress += new KeyPressEventHandler(CanvasTextBoxKeyPress);
-
-            _heightTextBox.Location = new Point(95, 12);
-            _heightTextBox.Multiline = true;
-            _heightTextBox.Name = "HeightTextBox";
-            _heightTextBox.Size = new Size(50, 30);
-            _heightTextBox.TabIndex = 3;
-            _heightTextBox.Text = "500";
-            _heightTextBox.TextChanged += new EventHandler(HeightTextBoxTextChanged);
-            _heightTextBox.KeyPress += new KeyPressEventHandler(CanvasTextBoxKeyPress);
-
-            _sizeButton.BackColor = SystemColors.MenuHighlight;
-            _sizeButton.Location = new Point(14, 17);
-            _sizeButton.Name = "CanvasButton";
-            _sizeButton.Size = new Size(20, 20);
-            _sizeButton.TabIndex = 4;
-            _sizeButton.UseVisualStyleBackColor = false;
-            _sizeButton.Click += new EventHandler(CanvasButtonClick);
-
-            _clearButton.Location = new Point(12, 60);
-            _clearButton.Name = "Erase";
-            _clearButton.Size = new Size(80, 30);
-            _clearButton.TabIndex = 6;
-            _clearButton.Text = "Erase";
-            _clearButton.UseVisualStyleBackColor = true;
+            _pictureBox.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
 
             _panel.AutoScroll = true;
             _panel.BackColor = SystemColors.Window;
@@ -151,7 +113,7 @@ namespace Editor
             _rectCountBox.TabIndex = 3;
             _rectCountBox.Text = "Rectangles:";
 
-            _triangleButton.Location = new Point(150, 12);
+            _triangleButton.Location = new Point(100, 12);
             _triangleButton.Name = "Triangle";
             _triangleButton.Size = new Size(100, 30);
             _triangleButton.TabIndex = 0;
@@ -159,7 +121,7 @@ namespace Editor
             _triangleButton.UseVisualStyleBackColor = true;
             _triangleButton.Click += new EventHandler(TriangleButtonClick);
 
-            _circleButton.Location = new Point(255, 12);
+            _circleButton.Location = new Point(205, 12);
             _circleButton.Name = "Circle";
             _circleButton.Size = new Size(100, 30);
             _circleButton.TabIndex = 8;
@@ -167,7 +129,7 @@ namespace Editor
             _circleButton.UseVisualStyleBackColor = true;
             _circleButton.Click += new EventHandler(CircleButtonClick);
 
-            _pentagonButton.Location = new Point(360, 12);
+            _pentagonButton.Location = new Point(310, 12);
             _pentagonButton.Name = "Pentagon";
             _pentagonButton.Size = new Size(100, 30);
             _pentagonButton.TabIndex = 9;
@@ -175,7 +137,7 @@ namespace Editor
             _pentagonButton.UseVisualStyleBackColor = true;
             _pentagonButton.Click += new EventHandler(PentagonButtonClick);
 
-            _rectangleButton.Location = new Point(465, 12);
+            _rectangleButton.Location = new Point(415, 12);
             _rectangleButton.Name = "Rectangle";
             _rectangleButton.Size = new Size(100, 30);
             _rectangleButton.TabIndex = 10;
@@ -183,7 +145,14 @@ namespace Editor
             _rectangleButton.UseVisualStyleBackColor = true;
             _rectangleButton.Click += new EventHandler(RectButtonClick);
 
-            _saveButton.Location = new Point(12, 116);
+            _clearButton.Location = new Point(12, 12);
+            _clearButton.Name = "Erase";
+            _clearButton.Size = new Size(80, 30);
+            _clearButton.TabIndex = 6;
+            _clearButton.Text = "Erase";
+            _clearButton.UseVisualStyleBackColor = true;
+
+            _saveButton.Location = new Point(12, 60);
             _saveButton.Name = "Save";
             _saveButton.Size = new Size(80, 30);
             _saveButton.TabIndex = 11;
@@ -191,7 +160,7 @@ namespace Editor
             _saveButton.UseVisualStyleBackColor = true;
             _saveButton.Click += new EventHandler(OnSaveFigures);
 
-            _loadButton.Location = new Point(12, 152);
+            _loadButton.Location = new Point(12, 95);
             _loadButton.Name = "Load";
             _loadButton.Size = new Size(80, 30);
             _loadButton.TabIndex = 12;
@@ -203,7 +172,7 @@ namespace Editor
             AutoScaleDimensions = new SizeF(6f, 13f);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1200, 800);
-            MinimumSize = new Size(1100, 650);
+            MinimumSize = new Size(1020, 650);
 
             Controls.Add((Control)_panel);
 
@@ -215,10 +184,7 @@ namespace Editor
             Controls.Add((Control)_pentagonButton);
             Controls.Add((Control)_circleButton);
             Controls.Add((Control)_triangleButton);
-            
-            Controls.Add((Control)_sizeButton);
-            Controls.Add((Control)_widthTextBox);
-            Controls.Add((Control)_heightTextBox);
+
             Controls.Add((Control)_pictureBox);
             
 
