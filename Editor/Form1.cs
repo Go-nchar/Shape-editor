@@ -55,7 +55,7 @@ namespace Editor
             if (_saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            Storage.Save<FiguresData>(_saveFileDialog.FileName, _figuresData);
+            Storage.Save(_saveFileDialog.FileName, _figuresData);
             MessageBox.Show("File saved");
         }
 
@@ -66,7 +66,7 @@ namespace Editor
                 (int startX, int? startY) = GetSrartXY(figure);
 
                 figure.Init(figure.Points, startX, _pictureBox, _panel, startY,
-                    new Action<BaseButton>(OnButtonMouseEnter), new Action<BaseButton>(OnButtonMouseUp), 
+                    new Action<BaseButton>(OnButtonMouseEnter), 
                     new Action<object, KeyPressEventArgs, TextBox>(TextBoxKeyPress), 
                     new Action<BaseButton>(FigureTextChanged));
 
@@ -101,7 +101,18 @@ namespace Editor
         public void DrawFigures()
         {
             foreach (Figure figure in _figuresData.Figures)
+            {
                 figure.Draw(_canvas.Field(_pictureBox), _pictureBox);
+
+                //if (figure != null)
+                //{
+                //    foreach (BaseButton button in figure.PointButtons)
+                //    {
+                //        button.BoxX.Text = (button.Location.X + 4).ToString();
+                //        button.BoxY.Text = (button.Location.Y + 4).ToString();
+                //    }
+                //}
+            }
         }
 
         private void TriangleButtonClick(object sender, EventArgs e)
@@ -121,7 +132,7 @@ namespace Editor
             _figuresData.Figures.Add(triangle);
 
             triangle.Init(points.ToList(), 5, _pictureBox, _panel, startY,
-                new Action<BaseButton>(OnButtonMouseEnter), new Action<BaseButton>(OnButtonMouseUp), 
+                new Action<BaseButton>(OnButtonMouseEnter), 
                 new Action<object, KeyPressEventArgs, TextBox>(TextBoxKeyPress), new Action<BaseButton>(FigureTextChanged));
 
             triangle.Draw(_canvas.Field(_pictureBox), _pictureBox);
@@ -135,8 +146,22 @@ namespace Editor
 
             for (int i = 0; i < 2; ++i)
             {
-                points[i].X = _random.Next(0, _pictureBox.Size.Width);
-                points[i].Y = _random.Next(0, _pictureBox.Size.Height);
+                if (i == 0)
+                {
+                    points[i].X = _random.Next(0, _pictureBox.Size.Width);
+                    points[i].Y = _random.Next(0, _pictureBox.Size.Height);
+                }
+                else
+                {
+                    List<int> radius = new List<int>();
+                    radius.Add(Math.Abs(points[0].X - _pictureBox.Size.Width));
+                    radius.Add(Math.Abs(points[0].Y - _pictureBox.Size.Height));
+                    radius.Add(points[0].X);
+                    radius.Add(points[0].Y);
+
+                    points[i].X = _random.Next(points[0].X - radius.Min(), points[0].X + radius.Min());
+                    points[i].Y = _random.Next(points[0].Y - radius.Min(), points[0].Y + radius.Min());
+                }
             }
             List<TextBox> textBoxList = new List<TextBox>();
             Figure figure = _figuresData.Figures.FindAll(f => f is Circle).LastOrDefault();
@@ -145,7 +170,7 @@ namespace Editor
             _figuresData.Figures.Add(circle);
 
             circle.Init(points.ToList(), 103, _pictureBox, _panel, startY,
-                new Action<BaseButton>(OnButtonMouseEnter), new Action<BaseButton>(OnButtonMouseUp), 
+                new Action<BaseButton>(OnButtonMouseEnter), 
                 new Action<object, KeyPressEventArgs, TextBox>(TextBoxKeyPress), new Action<BaseButton>(FigureTextChanged));
 
             circle.Draw(_canvas.Field(_pictureBox), _pictureBox);
@@ -188,8 +213,22 @@ namespace Editor
 
             for (int i = 0; i < 2; ++i)
             {
-                points[i].X = _random.Next(0, _pictureBox.Size.Width);
-                points[i].Y = _random.Next(0, _pictureBox.Size.Height);
+                if (i == 0)
+                {
+                    points[i].X = _random.Next(0, _pictureBox.Size.Width);
+                    points[i].Y = _random.Next(0, _pictureBox.Size.Height);
+                }
+                else
+                {
+                    List<int> radius = new List<int>();
+                    radius.Add(Math.Abs(points[0].X - _pictureBox.Size.Width));
+                    radius.Add(Math.Abs(points[0].Y - _pictureBox.Size.Height));
+                    radius.Add(points[0].X);
+                    radius.Add(points[0].Y);
+
+                    points[i].X = _random.Next(points[0].X - radius.Min(), points[0].X + radius.Min());
+                    points[i].Y = _random.Next(points[0].Y - radius.Min(), points[0].Y + radius.Min());
+                }
             }
 
             List<TextBox> textBoxList = new List<TextBox>();
@@ -199,7 +238,7 @@ namespace Editor
             _figuresData.Figures.Add(pentagon);
 
             pentagon.Init(points.ToList(), 201, _pictureBox, _panel, startY,
-                new Action<BaseButton>(OnButtonMouseEnter), new Action<BaseButton>(OnButtonMouseUp), 
+                new Action<BaseButton>(OnButtonMouseEnter), 
                 new Action<object, KeyPressEventArgs, TextBox>(TextBoxKeyPress), new Action<BaseButton>(FigureTextChanged));
 
             pentagon.Draw(_canvas.Field(_pictureBox), _pictureBox);
@@ -209,12 +248,26 @@ namespace Editor
         private void RectButtonClick(object sender, EventArgs e)
         {
             Rect rect = new Rect();
-            Point[] source = new Point[2];
+            Point[] points = new Point[2];
 
-            for (int index = 0; index < 2; ++index)
+            for (int i = 0; i < 2; ++i)
             {
-                source[index].X = _random.Next(0, _pictureBox.Size.Width);
-                source[index].Y = _random.Next(0, _pictureBox.Size.Height);
+                if (i == 0)
+                {
+                    points[i].X = _random.Next(0, _pictureBox.Size.Width);
+                    points[i].Y = _random.Next(0, _pictureBox.Size.Height);
+                }
+                else
+                {
+                    List<int> radius = new List<int>();
+                    radius.Add(Math.Abs(points[0].X - _pictureBox.Size.Width));
+                    radius.Add(Math.Abs(points[0].Y - _pictureBox.Size.Height));
+                    radius.Add(points[0].X);
+                    radius.Add(points[0].Y);
+
+                    points[i].X = _random.Next(points[0].X - radius.Min(), points[0].X + radius.Min());
+                    points[i].Y = _random.Next(points[0].Y - radius.Min(), points[0].Y + radius.Min());
+                }
             }
 
             List<TextBox> textBoxList = new List<TextBox>();
@@ -223,8 +276,8 @@ namespace Editor
 
             _figuresData.Figures.Add(rect);
 
-            rect.Init(source.ToList(), 299, _pictureBox, _panel, startY,
-                new Action<BaseButton>(OnButtonMouseEnter), new Action<BaseButton>(OnButtonMouseUp), 
+            rect.Init(points.ToList(), 299, _pictureBox, _panel, startY,
+                new Action<BaseButton>(OnButtonMouseEnter), 
                 new Action<object, KeyPressEventArgs, TextBox>(TextBoxKeyPress), new Action<BaseButton>(FigureTextChanged));
 
             rect.Draw(_canvas.Field(_pictureBox), _pictureBox);
@@ -276,18 +329,23 @@ namespace Editor
             tooltip.SetToolTip(button, point.ToString());
         }
 
-        public void OnButtonMouseUp(BaseButton button)
-        {
-            button.Location = button.LocPoint;
-            button.BoxX.Text = (button.LocPoint.X + 4).ToString();
-            button.BoxY.Text = (button.LocPoint.Y + 4).ToString();
+        //public void OnButtonMouseUp(BaseButton button)
+        //{
+        //    button.Location = button.LocPoint;
+        //    button.BoxX.Text = (button.LocPoint.X + 4).ToString();
+        //    button.BoxY.Text = (button.LocPoint.Y + 4).ToString();
             
-            _canvas.ClearField(_pictureBox);
-            _tooltip.RemoveAll();
-            DrawFigures();
+        //    _canvas.ClearField(_pictureBox);
+        //    _tooltip.RemoveAll();
+        //    DrawFigures();
+        //}
+
+        public PictureBox GetPictureBox()
+        {
+            return _pictureBox;
         }
 
-        private void FigureTextChanged(BaseButton button)
+        public void FigureTextChanged(BaseButton button)
         {
             int x = 0;
             if (button.BoxX != null && button.BoxX.Text.Length != 0)

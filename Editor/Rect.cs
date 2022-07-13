@@ -13,10 +13,10 @@ namespace Editor
         private Point _center;
 
         public override void Init(List<Point> points, int startX, PictureBox pictureBox, Panel panel, int? startY,
-            Action<BaseButton> mouseEnter, Action<BaseButton> mouseUp, Action<object, KeyPressEventArgs, TextBox> keyPress,
+            Action<BaseButton> mouseEnter, Action<object, KeyPressEventArgs, TextBox> keyPress,
                 Action<BaseButton> textChanged)
         {
-            base.Init(points, startX, pictureBox, panel, startY, mouseEnter, mouseUp, keyPress, textChanged);
+            base.Init(points, startX, pictureBox, panel, startY, mouseEnter, keyPress, textChanged);
             _center = PointButtons.First().Location;
         }
 

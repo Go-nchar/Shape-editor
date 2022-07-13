@@ -10,6 +10,8 @@ namespace Editor
         public Point LocPoint;
         private Point DownPoint;
         private bool IsDragMode;
+        private Canvas _canvas = new Canvas();
+        private ToolTip _tooltip = new ToolTip();
 
         protected override void OnMouseDown(MouseEventArgs mevent)
         {
@@ -40,8 +42,13 @@ namespace Editor
                     int y = Location.Y + point.Y;
                     Location = new Point(x, y);
                     LocPoint = Location;
+                    BoxX.Text = (Location.X + 4).ToString();
+                    BoxY.Text = (Location.Y + 4).ToString();
                 }
             }
+            _canvas.ClearField(Program.MainForm.GetPictureBox());
+            _tooltip.RemoveAll();
+            Program.MainForm.DrawFigures();
         }
     }
 }

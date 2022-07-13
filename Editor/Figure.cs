@@ -22,7 +22,7 @@ namespace Editor
         }
 
         public virtual void Init(List<Point> points, int startX, PictureBox pictureBox, Panel panel, int? startY,
-            Action<BaseButton> mouseEnter, Action<BaseButton> mouseUp, Action<object, KeyPressEventArgs, TextBox> keyPress,
+            Action<BaseButton> mouseEnter, Action<object, KeyPressEventArgs, TextBox> keyPress,
                 Action<BaseButton> textChanged)
         {
             Points = points;
@@ -40,7 +40,7 @@ namespace Editor
 
                 AddPointButton(button);
                 pictureBox.Controls.Add(button);
-                button.MouseUp += (a, s) => mouseUp(button);
+                //button.MouseUp += (a, s) => mouseUp(button);
                 button.MouseEnter += (a, s) => mouseEnter(button);
 
                 TextBox textBox1 = TextBoxes.LastOrDefault();

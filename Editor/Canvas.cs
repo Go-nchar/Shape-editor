@@ -10,11 +10,12 @@ namespace Editor
             pictureBox.BackColor = Color.Turquoise;
         }
 
+        //BufferedGraphicsContext
+        //BufferedGraphics
         public Graphics Field(PictureBox pictureBox) => pictureBox.CreateGraphics();
 
         public void ClearField(PictureBox pictureBox)
         {
-            pictureBox.Controls.Clear();
             pictureBox.CreateGraphics().Clear(Color.Turquoise);
         }
     }

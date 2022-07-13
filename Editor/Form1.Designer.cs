@@ -56,7 +56,7 @@ namespace Editor
             _pictureBox.Location = new Point(100, 60);
             _pictureBox.Name = "pictureBox1";
             _pictureBox.Size = new Size(660, 725);
-            _pictureBox.TabIndex = 1;
+            _pictureBox.TabIndex = 0;
             _pictureBox.TabStop = false;
             _pictureBox.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
 
@@ -70,7 +70,7 @@ namespace Editor
             _panel.Location = new Point(784, 12);
             _panel.Name = "panel1";
             _panel.Size = new Size(400, 773);
-            _panel.TabIndex = 7;
+            _panel.TabIndex = 1;
             _panel.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom;
 
             _triangleCountBox.BackColor = SystemColors.Window;
@@ -90,7 +90,7 @@ namespace Editor
             _circleCountBox.Name = "CircleCountBox";
             _circleCountBox.ReadOnly = true;
             _circleCountBox.Size = new Size(95, 20);
-            _circleCountBox.TabIndex = 1;
+            _circleCountBox.TabIndex = 2;
             _circleCountBox.Text = "Circles:";
 
             _pentagonCountBox.BackColor = SystemColors.Window;
@@ -100,7 +100,7 @@ namespace Editor
             _pentagonCountBox.Name = "PentagonCountBox";
             _pentagonCountBox.ReadOnly = true;
             _pentagonCountBox.Size = new Size(95, 20);
-            _pentagonCountBox.TabIndex = 2;
+            _pentagonCountBox.TabIndex = 3;
             _pentagonCountBox.Text = "Pentagons:";
 
             _rectCountBox.BackColor = SystemColors.Window;
@@ -110,13 +110,13 @@ namespace Editor
             _rectCountBox.Name = "RectCountBox";
             _rectCountBox.ReadOnly = true;
             _rectCountBox.Size = new Size(95, 20);
-            _rectCountBox.TabIndex = 3;
+            _rectCountBox.TabIndex = 4;
             _rectCountBox.Text = "Rectangles:";
 
             _triangleButton.Location = new Point(100, 12);
             _triangleButton.Name = "Triangle";
             _triangleButton.Size = new Size(100, 30);
-            _triangleButton.TabIndex = 0;
+            _triangleButton.TabIndex = 5;
             _triangleButton.Text = "Triangle";
             _triangleButton.UseVisualStyleBackColor = true;
             _triangleButton.Click += new EventHandler(TriangleButtonClick);
@@ -124,7 +124,7 @@ namespace Editor
             _circleButton.Location = new Point(205, 12);
             _circleButton.Name = "Circle";
             _circleButton.Size = new Size(100, 30);
-            _circleButton.TabIndex = 8;
+            _circleButton.TabIndex = 6;
             _circleButton.Text = "Circle";
             _circleButton.UseVisualStyleBackColor = true;
             _circleButton.Click += new EventHandler(CircleButtonClick);
@@ -132,7 +132,7 @@ namespace Editor
             _pentagonButton.Location = new Point(310, 12);
             _pentagonButton.Name = "Pentagon";
             _pentagonButton.Size = new Size(100, 30);
-            _pentagonButton.TabIndex = 9;
+            _pentagonButton.TabIndex = 7;
             _pentagonButton.Text = "Pentagon";
             _pentagonButton.UseVisualStyleBackColor = true;
             _pentagonButton.Click += new EventHandler(PentagonButtonClick);
@@ -140,7 +140,7 @@ namespace Editor
             _rectangleButton.Location = new Point(415, 12);
             _rectangleButton.Name = "Rectangle";
             _rectangleButton.Size = new Size(100, 30);
-            _rectangleButton.TabIndex = 10;
+            _rectangleButton.TabIndex = 8;
             _rectangleButton.Text = "Rectangle";
             _rectangleButton.UseVisualStyleBackColor = true;
             _rectangleButton.Click += new EventHandler(RectButtonClick);
@@ -148,7 +148,7 @@ namespace Editor
             _clearButton.Location = new Point(12, 12);
             _clearButton.Name = "Erase";
             _clearButton.Size = new Size(80, 30);
-            _clearButton.TabIndex = 6;
+            _clearButton.TabIndex = 9;
             _clearButton.Text = "Erase";
             _clearButton.UseVisualStyleBackColor = true;
 
@@ -163,7 +163,7 @@ namespace Editor
             _loadButton.Location = new Point(12, 95);
             _loadButton.Name = "Load";
             _loadButton.Size = new Size(80, 30);
-            _loadButton.TabIndex = 12;
+            _loadButton.TabIndex = 10;
             _loadButton.Text = "Load";
             _loadButton.UseVisualStyleBackColor = true;
             _loadButton.Click += new EventHandler(OnLoadFigures);
